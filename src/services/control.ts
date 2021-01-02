@@ -4,7 +4,7 @@ export default class SettingService extends Service {
   public constructor(public broker: ServiceBroker) {
     super(broker)
     this.parseServiceSchema({
-      name: 'order',
+      name: 'control',
     })
   }
 }

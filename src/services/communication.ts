@@ -5,7 +5,7 @@ import {
 import { Control } from '@nodetron/types/internal/control'
 import { Placement } from '@nodetron/types/internal/control/placement'
 
-import startGrSimInfo from '../network/UDPClient'
+import UDPClient from '../network/UDPClient'
 import Config from '../Config'
 import { start as startGrSimControl, sendCommand as sendGrSimCommand, sendPlacement as sendGrSimPlacement } from '../network/GrSim'
 import { start as startCOMCard, sendCommand as sendCOMCardCommand } from '../network/ComCard'
@@ -21,12 +21,12 @@ export default class BotsGatewayService extends Service {
           await startGrSimControl(
             broker,
           )
-          await startGrSimInfo(
+          await UDPClient(
             broker,
             Config.network.vision.address,
             Config.network.grSim.status.yellow,
             Config.network.host_address,
-            'bots-gateway.hardwareInfo',
+            'bots.hardwareInfo',
             processProtobufGrSimRobotsStatusMessage,
           )
         } else {

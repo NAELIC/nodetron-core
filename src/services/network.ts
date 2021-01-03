@@ -10,13 +10,14 @@ export default class NetworkService extends Service {
     super(broker)
     this.parseServiceSchema({
       name: 'network',
+      dependencies: ['communication'],
       async started() {
         await UDPClient(
           broker,
           Config.network.vision.address,
           Config.network.vision.port,
           Config.network.host_address,
-          'network-gateway.vision',
+          'network.vision',
           processProtobufSSLVisionPacket,
         )
 
@@ -25,7 +26,7 @@ export default class NetworkService extends Service {
           Config.gameController.address,
           Config.gameController.port,
           Config.network.host_address,
-          'network-gateway.gameController',
+          'network.gameController',
           processProtobufSSLRefereeMessage,
         )
       },

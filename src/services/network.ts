@@ -13,9 +13,9 @@ export default class NetworkService extends Service {
       async started() {
         await UDPClient(
           broker,
-          Config.vision.address,
-          Config.vision.port,
-          Config.host.address,
+          Config.network.vision.address,
+          Config.network.vision.port,
+          Config.network.host_address,
           'network-gateway.vision',
           processProtobufSSLVisionPacket,
         )
@@ -24,7 +24,7 @@ export default class NetworkService extends Service {
           broker,
           Config.gameController.address,
           Config.gameController.port,
-          Config.host.address,
+          Config.network.host_address,
           'network-gateway.gameController',
           processProtobufSSLRefereeMessage,
         )

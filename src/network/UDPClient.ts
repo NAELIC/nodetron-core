@@ -17,7 +17,7 @@ export default (
   port: number,
   hostAddress: string,
   eventName: string,
-  processingFunction: (buffer: Buffer) => Vision | GameControllerEvent | HardwareInfo,
+  processingFunction: (buffer: Buffer) => Vision | GameControllerEvent | Array<HardwareInfo>,
 ): Promise<void> => new Promise((resolve, reject) => {
   socket = dgram.createSocket({ type: 'udp4', reuseAddr: true })
 

@@ -1,11 +1,11 @@
-import { Vision } from '@nodetron/types/league/vision'
+import { VisionDetectionFrame } from '@nodetron/types/league/vision'
 
 // interface CameraData {
 //     vision: Array<Vision>,
 //     lastTime: number,
 // }
 
-const cameraState: Array<Array<Vision>> = [
+const cameraState: Array<Array<VisionDetectionFrame>> = [
   [],
   [],
   [],

@@ -5,7 +5,7 @@ import { GameControllerEvent } from '@nodetron/types/league/game-controller'
 import { HardwareInfo } from '@nodetron/types/league/grsim'
 import { Vision } from '@nodetron/types/league/vision'
 
-import cameraData from '../filters/state'
+import cameraData from '../data/state'
 
 // Put all data in an dimension array of queue
 // (Don't forgot to put in the field only if it is not in late)
@@ -48,7 +48,7 @@ export default class DataService extends Service {
 
   public static addVisionData(data: Vision, broker: ServiceBroker): void {
     // TODO : Prefilter
-    if (data.detection) { cameraData[data.detection.cameraId].push(data) }
+    if (data.detection) { cameraData[data.detection.cameraId].push(data.detection) }
 
     // TODO : Don't update everytime
     if (data.geometry) { broker.logger.debug(data.geometry) }

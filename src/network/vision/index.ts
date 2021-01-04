@@ -198,7 +198,6 @@ function castProtobufVisionWrapper(payload: SSLWrapperPacket): Vision {
   return {
     detection: payload.detection ? castProtobufVisionDetectionFrame(payload.detection) : null,
     geometry: payload.geometry ? castProtobufVisionGeometryData(payload.geometry) : null,
-    allyColor: Config.yellow ? Color.YELLOW : Color.BLUE,
   }
 }
 

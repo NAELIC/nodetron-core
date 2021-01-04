@@ -5,7 +5,8 @@ import { GameControllerEvent } from '@nodetron/types/league/game-controller'
 import { HardwareInfo } from '@nodetron/types/league/grsim'
 import { Vision } from '@nodetron/types/league/vision'
 
-import cameraData from '../data/state'
+import { cameraState } from '../data/state'
+import pipeline from '../data/pipeline'
 
 // Put all data in an dimension array of queue
 // (Don't forgot to put in the field only if it is not in late)
@@ -24,7 +25,8 @@ export default class DataService extends Service {
       dependencies: ['network'],
       async started() {
         interval = setInterval(() => {
-          cameraData.forEach((value) => {
+          pipeline(broker, cameraState)
+          cameraState.forEach((value) => {
             while (value.length) { value.pop() }
           })
         }, 60)
@@ -48,10 +50,10 @@ export default class DataService extends Service {
 
   public static addVisionData(data: Vision, broker: ServiceBroker): void {
     // TODO : Prefilter
-    if (data.detection) { cameraData[data.detection.cameraId].push(data.detection) }
+    if (data.detection) { cameraState[data.detection.cameraId].push(data.detection) }
 
     // TODO : Don't update everytime
-    if (data.geometry) { broker.logger.debug(data.geometry) }
+    if (data.geometry) { broker.logger.debug(data.geometry.field) }
   }
 
   public static updateGameController(newState: GameControllerEvent, broker: ServiceBroker): void {

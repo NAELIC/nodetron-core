@@ -25,6 +25,9 @@ const Config = {
         yellow: get('YELLOW_TEAM_STATUS_PORT').default('30012').asIntPositive(),
       },
     },
+    ws: {
+      port: get('WS_PORT').default('7882').asPortNumber(),
+    },
   },
   gameController: {
     address: get('GAME_CONTROLLER_ADDRESS').default('224.5.23.1').asString(),

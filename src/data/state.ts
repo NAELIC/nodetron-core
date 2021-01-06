@@ -6,7 +6,7 @@ import { VisionDetectionFrame } from '@nodetron/types/league/vision'
 //     lastTime: number,
 // }
 
-export const geometryState: Field = {
+export const fieldState: Field = {
   length: 0,
   width: 0,
   goal: {

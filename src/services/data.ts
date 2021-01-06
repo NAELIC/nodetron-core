@@ -36,7 +36,7 @@ export default class DataService extends Service {
             while (value.length) { value.pop() }
           })
 
-          void broker.emit('game.state', {
+          void broker.emit('data.state', {
             field: fieldState,
             robots: data.robots,
             ball: data.ball,

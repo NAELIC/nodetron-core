@@ -165,7 +165,7 @@ export default class MoveToAction extends Action {
           this.lastYLinearVelocity = -dx * sin(robot.orientation) + dy * cos(robot.orientation)
         }
 
-        void broker.call('bots-gateway.control', {
+        void broker.call('communication.control', {
           id: this.id,
           yellow: state.data.color === Color.YELLOW,
           dribbler: this.dribble,

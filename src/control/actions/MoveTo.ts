@@ -49,7 +49,7 @@ export default class MoveToAction extends Action {
     public kick: boolean,
     public chipKick: boolean,
     public power: number,
-    public dribble: boolean,
+    public spin: boolean,
   ) {
     super()
   }
@@ -59,7 +59,7 @@ export default class MoveToAction extends Action {
       id: 'number',
       target: 'object',
       orientation: 'number',
-      dribble: { type: 'boolean', optional: true, default: false },
+      spin: { type: 'boolean', optional: true, default: false },
       kick: { type: 'boolean', optional: true, default: false },
       chipKick: { type: 'boolean', optional: true, default: false },
       power: { type: 'number', optional: true, default: 0 },
@@ -71,7 +71,7 @@ export default class MoveToAction extends Action {
         new MoveToAction(
           ctx.params.id, ctx.params.target, ctx.params.orientation,
           ctx.params.kick, ctx.params.chipkick, ctx.params.power,
-          ctx.params.dribble,
+          ctx.params.spin,
         ),
       )
     },
@@ -168,7 +168,7 @@ export default class MoveToAction extends Action {
         void broker.call('communication.control', {
           id: this.id,
           yellow: state.data.color === Color.YELLOW,
-          dribbler: this.dribble,
+          spin: this.spin,
           kick: this.kick,
           chipKick: this.chipKick,
           power: this.power,

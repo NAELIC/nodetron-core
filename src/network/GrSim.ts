@@ -56,7 +56,7 @@ export function sendCommand(ctx: Context, payload: Control): void {
             id: payload.id,
             kickspeedx: payload.kick && payload.power ? payload.power : 0,
             kickspeedz: payload.chipKick && !payload.kick && payload.power ? payload.power : 0,
-            spinner: payload.dribbler,
+            spinner: payload.spin,
             velnormal: payload.velocity.normal,
             velangular: payload.velocity.angular,
             veltangent: payload.velocity.tangent,

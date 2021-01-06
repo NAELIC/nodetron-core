@@ -4,7 +4,6 @@ import {
   VisionFieldCircularArc, VisionFieldLineSegment,
   VisionGeometryCameraCalibration, VisionGeometry, VisionGeometryFieldSize,
 } from '@nodetron/types/league/vision'
-import { Color } from '@nodetron/types/utils/utils'
 
 import Config from '../../Config'
 

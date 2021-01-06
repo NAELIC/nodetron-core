@@ -40,8 +40,8 @@ export default class BotsGatewayService extends Service {
         control: {
           params: {
             id: { type: 'number', min: 0, max: 15 },
-            dribbler: { type: 'boolean', optional: true, default: false },
             yellow: { type: 'boolean', optional: true, default: true },
+            spin: { type: 'boolean', optional: true, default: false },
             kick: { type: 'boolean', optional: true, default: false },
             chipKick: { type: 'boolean', optional: true, default: false },
             power: { type: 'number', optional: true, default: 0 },

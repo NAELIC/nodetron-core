@@ -44,7 +44,7 @@
     "standard-version": "^9.1.0"
   },
   "dependencies": {
-    "@nodetron/types": "0.0.1-beta.4",
+    "@nodetron/types": "0.0.1-beta.8",
     "dotenv": "^8.2.0",
     "env-var": "^7.0.0",
     "mathjs": "^8.1.1",

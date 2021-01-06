@@ -39,7 +39,7 @@ export function sendCommand(ctx: Context, payload: Control): void {
   if (payload.kick) action |= actionKick1
   if (payload.chipKick) action |= actionKick2
   // if(payload.tareOdometry) action |= actionTareOdom
-  if (payload.dribbler) action |= actionDribble
+  if (payload.spin) action |= actionDribble
   // if(payload.charge) action |= charge
 
   tmpPacket.writeUInt8(0xaa, 0)

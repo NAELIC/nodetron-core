@@ -65,12 +65,11 @@ export function sendCommand(ctx: Context, payload: Control): void {
         ],
       },
     })
-
     const buffer = GrSimPacket.encode(msg).finish()
     socket.send(
       buffer,
       Config.network.grSim.control,
-      Config.network.vision.address,
+      Config.network.grSim.address,
     )
   } catch (e: unknown) {
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions

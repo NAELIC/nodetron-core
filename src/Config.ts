@@ -19,6 +19,7 @@ const Config = {
       port: get('VISION_PORT').default('10006').asIntPositive(),
     },
     grSim: {
+      address: get('GRSIM_ADDRESS').default('0.0.0.0').asString(),
       control: get('CONTROL_PORT').default('20011').asIntPositive(),
       status: {
         blue: get('BLUE_TEAM_STATUS_PORT').default('30011').asIntPositive(),

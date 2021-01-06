@@ -11,8 +11,8 @@ export default class SettingService extends Service {
     this.parseServiceSchema({
       name: 'control',
       dependencies: [
-        'bots-gateway',
-        'game-data',
+        'communication',
+        'data',
       ],
       actions: actionSet,
       events: {

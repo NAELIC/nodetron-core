@@ -19,19 +19,14 @@ export default function processGeometry(
   }
 
   // TODO : Can be collasped to array find
-  let pdepth = 0
-  let pwidth = 0
   fieldPacket.lines.forEach((line) => {
     if (line.name === 'LeftFieldLeftPenaltyStretch') {
-      pdepth = Math.abs(line.p1.x - line.p2.x) / 1000.0
-      pwidth = Math.abs(2 * line.p1.y) / 1000.0
+      fieldState.penalty = {
+        depth: Math.abs(line.p1.x - line.p2.x) / 1000.0,
+        width: Math.abs(2 * line.p1.y) / 1000.0,
+      }
     }
   })
-
-  fieldState.penalty = {
-    depth: pdepth,
-    width: pwidth,
-  }
 
   fieldPacket.arcs.forEach((arc) => {
     if (arc.name === 'CenterCircle') {

@@ -15,7 +15,7 @@ export default class BotsGatewayService extends Service {
   public constructor(public broker: ServiceBroker) {
     super(broker)
     this.parseServiceSchema({
-      name: 'communication',
+      name: 'bots',
       async started() {
         if (Config.simulation) {
           await startGrSimControl(

@@ -1,5 +1,6 @@
 import { Field } from '@nodetron/types/internal/data'
 import { VisionDetectionFrame } from '@nodetron/types/league/vision'
+import Point from '@nodetron/math/Point2D'
 
 // interface CameraData {
 //     vision: Array<Vision>,
@@ -18,11 +19,8 @@ export const fieldState: Field = {
     depth: 0,
   },
   boundaryWidth: 0,
-  center: {
-    center: {
-      x: 0,
-      y: 0,
-    },
+  centerMark: {
+    center: new Point(0, 0),
     radius: 0,
   },
 }

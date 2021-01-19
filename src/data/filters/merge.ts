@@ -2,6 +2,7 @@
 import { Ball } from '@nodetron/types/internal/data'
 import { Robot } from '@nodetron/types/internal/robot'
 import { VisionDetectionFrame } from '@nodetron/types/league/vision'
+import Point from '@nodetron/math/Point2D'
 
 import Filters from './filters'
 
@@ -25,10 +26,7 @@ export default class Merge extends Filters {
       camerasDetection.forEach((detections) => {
         detections.balls.forEach((ball) => {
           data.ball = {
-            position: {
-              x: ball.position.x / 1000.0,
-              y: ball.position.y / 1000.0,
-            },
+            position: new Point(ball.position.x / 1000.0, ball.position.y / 1000.0),
           }
         })
 
@@ -36,10 +34,10 @@ export default class Merge extends Filters {
           if (robot.id != null && robot.position.orientation != null) {
             data.robots.allies[robot.id] = {
               id: robot.id,
-              position: {
-                x: robot.position.x / 1000.0,
-                y: robot.position.y / 1000.0,
-              },
+              position: new Point(
+                robot.position.x / 1000.0,
+                robot.position.y / 1000.0,
+              ),
               orientation: robot.position.orientation,
               status: {
                 infrared: false, kick: { chip: false, flat: false },
@@ -52,10 +50,10 @@ export default class Merge extends Filters {
           if (robot.id != null && robot.position.orientation != null) {
             data.robots.opponents[robot.id] = {
               id: robot.id,
-              position: {
-                x: robot.position.x / 1000.0,
-                y: robot.position.y / 1000.0,
-              },
+              position: new Point(
+                robot.position.x / 1000.0,
+                robot.position.y / 1000.0,
+              ),
               orientation: robot.position.orientation,
               status: {
                 infrared: false, kick: { chip: false, flat: false },

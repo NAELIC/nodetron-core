@@ -5,7 +5,7 @@ import {
 } from 'mathjs'
 import Action from '@nodetron/types/internal/task-manager/tasks/actions'
 import { MoveToPacket } from '@nodetron/types/internal/control/packet'
-import { Vector2D } from '@nodetron/types/utils/math'
+import Point from '@nodetron/math/Point2D'
 import { Control } from '@nodetron/types/internal/control'
 import { Color } from '@nodetron/types/utils/utils'
 
@@ -44,7 +44,7 @@ export default class MoveToAction extends Action {
 
   constructor(
     public id: number,
-    public target: Vector2D,
+    public target: Point,
     public orientation: number,
     public kick: boolean,
     public chipKick: boolean,
@@ -69,7 +69,7 @@ export default class MoveToAction extends Action {
       state.actionManager.register(
         ctx.params.id,
         new MoveToAction(
-          ctx.params.id, ctx.params.target, ctx.params.orientation,
+          ctx.params.id, new Point(ctx.params.target.x, ctx.params.target.y), ctx.params.orientation,
           ctx.params.kick, ctx.params.chipkick, ctx.params.power,
           ctx.params.spin,
         ),

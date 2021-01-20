@@ -1,6 +1,5 @@
 import { ServiceBroker } from 'moleculer'
 import { VisionGeometryFieldSize } from '@nodetron/types/league/vision'
-import Point from '@nodetron/math/Point2D'
 
 import { fieldState } from '../state'
 
@@ -32,7 +31,7 @@ export default function processGeometry(
   fieldPacket.arcs.forEach((arc) => {
     if (arc.name === 'CenterCircle') {
       fieldState.centerMark = {
-        center: new Point(arc.center.x / 1000.0, arc.center.y / 1000.0),
+        center: { x: arc.center.x / 1000.0, y: arc.center.y / 1000.0 },
         radius: arc.radius / 1000.0,
       }
     }

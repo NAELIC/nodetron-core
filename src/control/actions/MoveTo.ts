@@ -5,7 +5,7 @@ import {
 } from 'mathjs'
 import Action from '@nodetron/types/task-manager/tasks/actions'
 import { MoveToMessage } from '@nodetron/types/control/moveTo'
-import Point from '@nodetron/math/Point2D'
+import { Point } from '@nodetron/math/Point2D'
 import { OrderMessage } from '@nodetron/types/bots/order'
 import { Color } from '@nodetron/types/utils/utils'
 

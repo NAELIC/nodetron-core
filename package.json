@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/EtienneSchmitz/nodetron-core"
+    "url": "https://github.com/NAELIC/nodetron-core"
   },
   "author": "NAELIC",
   "license": "MIT",
@@ -44,9 +44,9 @@
     "standard-version": "^9.1.0"
   },
   "dependencies": {
-    "@nodetron/math": "^0.0.1-beta.4",
+    "@nodetron/math": "^0.0.1-beta.5",
     "@nodetron/types": "0.0.1-beta.15",
-    "@nodetron/util": "^0.0.1-beta.3",
+    "@nodetron/util": "^0.0.1-beta.4",
     "dotenv": "^8.2.0",
     "env-var": "^7.0.0",
     "mathjs": "^9.0.0",

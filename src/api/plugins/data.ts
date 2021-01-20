@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable object-shorthand */
-import { Data } from '@nodetron/types/internal/data'
+import { DataMessage } from '@nodetron/types/data'
 import {
   Context,
 } from 'moleculer'
@@ -12,7 +12,7 @@ import Plugin from './plugin'
 const data: Plugin = {
   dependencies: ['data'],
   events: {
-    'data.state'(ctx: Context<Data>): void {
+    'data.state'(ctx: Context<DataMessage>): void {
       manager.addMessage(ctx.params, ctx.broker)
     },
   },

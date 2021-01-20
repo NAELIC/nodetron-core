@@ -1,5 +1,4 @@
-import { Ball } from '@nodetron/types/internal/data'
-import { Robot } from '@nodetron/types/internal/robot'
+import { IBall, IRobot } from '@nodetron/types/data'
 import { VisionDetectionFrame } from '@nodetron/types/league/vision'
 import { ServiceBroker } from 'moleculer'
 
@@ -10,6 +9,9 @@ const th = new Thresold(0.5, 0.5)
 const m = new Merge()
 
 export default function pipeline(broker: ServiceBroker,
-  data: Array<Array<VisionDetectionFrame>>): { ball: Ball, robots: { allies: Array<Robot>, opponents: Array<Robot> } } {
+  data: Array<Array<VisionDetectionFrame>>):
+  { ball: IBall,
+    robots: { allies: Array<IRobot>,
+      opponents: Array<IRobot>, }, } {
   return m.filter(th.filter(data))
 }

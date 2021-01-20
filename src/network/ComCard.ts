@@ -1,6 +1,6 @@
 import { Context, ServiceBroker } from 'moleculer'
 import SerialPort from 'serialport'
-import { Control } from '@nodetron/types/internal/control'
+import { OrderMessage } from '@nodetron/types/bots/order'
 
 const actionOn: number = (1 << 0)
 const actionKick1: number = (1 << 1)
@@ -33,7 +33,7 @@ export async function start(broker: ServiceBroker): Promise<void> {
   })
 }
 
-export function sendCommand(ctx: Context, payload: Control): void {
+export function sendCommand(ctx: Context, payload: OrderMessage): void {
   let action = actionOn
 
   if (payload.kick) action |= actionKick1

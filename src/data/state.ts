@@ -1,13 +1,13 @@
-import { Field } from '@nodetron/types/internal/data'
 import { VisionDetectionFrame } from '@nodetron/types/league/vision'
 import Point from '@nodetron/math/Point2D'
+import { IField } from '@nodetron/types/data'
 
 // interface CameraData {
 //     vision: Array<Vision>,
 //     lastTime: number,
 // }
 
-export const fieldState: Field = {
+export const fieldState: IField = {
   length: 0,
   width: 0,
   goal: {

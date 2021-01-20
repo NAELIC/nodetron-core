@@ -1,6 +1,7 @@
 /* eslint-disable object-shorthand */
 import { Context, Service, ServiceBroker } from 'moleculer'
-import { Data } from '@nodetron/types/internal/data'
+import { DataMessage } from '@nodetron/types/data'
+import { Data } from '@nodetron/util/data'
 
 import state from '../control/state'
 import actionSet from '../control/actions'
@@ -11,13 +12,13 @@ export default class SettingService extends Service {
     this.parseServiceSchema({
       name: 'control',
       dependencies: [
-        'communication',
+        'bots',
         'data',
       ],
       actions: actionSet,
       events: {
-        'data.state'(ctx: Context<Data>): void {
-          state.data = ctx.params
+        'data.state'(ctx: Context<DataMessage>): void {
+          state.data = new Data(ctx.params)
           state.actionManager.computeAll(broker)
         },
       },

@@ -2,8 +2,8 @@ import {
   Context,
   Service, ServiceBroker,
 } from 'moleculer'
-import { Control } from '@nodetron/types/internal/control'
-import { Placement } from '@nodetron/types/internal/control/placement'
+import { OrderMessage } from '@nodetron/types/bots/order'
+import { PlacementMessage } from '@nodetron/types/bots/placement'
 
 import UDPClient from '../network/UDPClient'
 import Config from '../Config'
@@ -37,7 +37,7 @@ export default class BotsGatewayService extends Service {
       },
 
       actions: {
-        control: {
+        order: {
           params: {
             id: { type: 'number', min: 0, max: 15 },
             yellow: { type: 'boolean', optional: true, default: true },
@@ -55,7 +55,7 @@ export default class BotsGatewayService extends Service {
               },
             },
           },
-          handler(ctx: Context<Control>): void {
+          handler(ctx: Context<OrderMessage>): void {
             if (Config.simulation) {
               sendGrSimCommand(ctx, ctx.params)
             } else {
@@ -111,7 +111,7 @@ export default class BotsGatewayService extends Service {
               },
             },
           },
-          handler(ctx: Context<Placement>): void {
+          handler(ctx: Context<PlacementMessage>): void {
             if (Config.simulation) {
               sendGrSimPlacement(ctx)
             } else {

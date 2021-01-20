@@ -1,32 +1,32 @@
 /* eslint-disable max-len */
-import { Ball } from '@nodetron/types/internal/data'
-import { Robot } from '@nodetron/types/internal/robot'
 import { VisionDetectionFrame } from '@nodetron/types/league/vision'
 import Point from '@nodetron/math/Point2D'
+import { IBall, IRobot } from '@nodetron/types/data'
 
 import Filters from './filters'
 
 export default class Merge extends Filters {
-  public initData(): { ball: Ball, robots: { allies: Array<Robot>, opponents: Array<Robot> } } {
+  public initData(): { ball: IBall, robots: { allies: Array<IRobot>, opponents: Array<IRobot> } } {
     return {
       robots: {
-        allies: [] as Array<Robot>,
-        opponents: [] as Array<Robot>,
+        allies: [] as Array<IRobot>,
+        opponents: [] as Array<IRobot>,
       },
       ball: {
         position: {},
-      } as Ball,
+      } as IBall,
     }
   }
 
   // TODO : Improve that
-  public filter(visionData: VisionDetectionFrame[][]): { ball: Ball, robots: { allies: Array<Robot>, opponents: Array<Robot> } } {
+  public filter(visionData: VisionDetectionFrame[][]): { ball: IBall, robots: { allies: Array<IRobot>, opponents: Array<IRobot> } } {
     const data = this.initData()
     visionData.forEach((camerasDetection) => {
       camerasDetection.forEach((detections) => {
         detections.balls.forEach((ball) => {
           data.ball = {
             position: new Point(ball.position.x / 1000.0, ball.position.y / 1000.0),
+            radius: 0.021375, // TODO : Move this in constant
           }
         })
 
@@ -39,9 +39,9 @@ export default class Merge extends Filters {
                 robot.position.y / 1000.0,
               ),
               orientation: robot.position.orientation,
-              status: {
-                infrared: false, kick: { chip: false, flat: false },
-              },
+              radius: 0.9, // TODO : Move this
+              infrared: false,
+              kick: { chip: false, flat: false },
             }
           }
         })
@@ -55,9 +55,9 @@ export default class Merge extends Filters {
                 robot.position.y / 1000.0,
               ),
               orientation: robot.position.orientation,
-              status: {
-                infrared: false, kick: { chip: false, flat: false },
-              },
+              radius: 0.9,
+              infrared: false,
+              kick: { chip: false, flat: false },
             }
           }
         })

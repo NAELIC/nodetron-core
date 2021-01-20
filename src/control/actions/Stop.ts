@@ -1,6 +1,6 @@
-import Action from '@nodetron/types/internal/task-manager/tasks/actions'
-import { StopPacket } from '@nodetron/types/internal/control/packet'
-import { Control } from '@nodetron/types/internal/control'
+import Action from '@nodetron/types/task-manager/tasks/actions'
+import { StopMessage } from '@nodetron/types/control/stop'
+import { OrderMessage } from '@nodetron/types/bots/order'
 import { ActionSchema, Context, ServiceBroker } from 'moleculer'
 import { Color } from '@nodetron/types/utils/utils'
 
@@ -17,14 +17,14 @@ export default class StopAction extends Action {
     params: {
       id: 'number',
     },
-    handler(ctx: Context<StopPacket>): void {
+    handler(ctx: Context<StopMessage>): void {
       ctx.broker.logger.debug('stop packet received')
       state.actionManager.register(ctx.params.id, new StopAction(ctx.params.id))
     },
   }
 
   public compute(broker: ServiceBroker): boolean {
-    void broker.call('bots-gateway.control', {
+    void broker.call('bots.order', {
       id: this.id,
       yellow: state.data.color === Color.YELLOW,
       velocity: {
@@ -32,7 +32,7 @@ export default class StopAction extends Action {
         tangent: 0,
         normal: 0,
       },
-    } as Control)
+    } as OrderMessage)
 
     return true
   }

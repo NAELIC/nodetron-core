@@ -4,13 +4,14 @@ import { Context, Service, ServiceBroker } from 'moleculer'
 import { GameControllerEvent } from '@nodetron/types/league/game-controller'
 import { HardwareInfo } from '@nodetron/types/league/grsim'
 import { Vision } from '@nodetron/types/league/vision'
-import { Data } from '@nodetron/types/internal/data'
+import { DataMessage } from '@nodetron/types/data'
 import { Color } from '@nodetron/types/utils/utils'
 
 import { cameraState, fieldState } from '../data/state'
 import pipeline from '../data/pipeline'
 import Config from '../Config'
 import processGeometry from '../data/process/geometry'
+// import constant from '../data/constant'
 
 // Put all data in an dimension array of queue
 // (Don't forgot to put in the field only if it is not in late)
@@ -41,8 +42,8 @@ export default class DataService extends Service {
             robots: data.robots,
             ball: data.ball,
             color: Config.yellow === true ? Color.YELLOW : Color.BLUE,
-            gameController: { }, // TODO : Process gameController Packet
-          } as Data)
+            // constant, TODO : READD THIS !
+          } as DataMessage)
         }, 60)
       },
       async stopped() {

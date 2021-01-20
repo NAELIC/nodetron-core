@@ -3,8 +3,8 @@
 import dgram from 'dgram'
 
 import { Context, ServiceBroker } from 'moleculer'
-import { Control } from '@nodetron/types/internal/control'
-import { Placement } from '@nodetron/types/internal/control/placement'
+import { OrderMessage } from '@nodetron/types/bots/order'
+import { PlacementMessage } from '@nodetron/types/bots/placement'
 
 import Config from '../Config'
 
@@ -45,7 +45,7 @@ export function start(
   })
 }
 
-export function sendCommand(ctx: Context, payload: Control): void {
+export function sendCommand(ctx: Context, payload: OrderMessage): void {
   try {
     const msg = GrSimPacket.create({
       commands: {
@@ -77,7 +77,7 @@ export function sendCommand(ctx: Context, payload: Control): void {
   }
 }
 
-export function sendPlacement(ctx: Context<Placement>): void {
+export function sendPlacement(ctx: Context<PlacementMessage>): void {
   try {
     const replacement: IgrSim_Replacement = {}
 

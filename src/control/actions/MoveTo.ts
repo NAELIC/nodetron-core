@@ -3,10 +3,10 @@ import { ActionSchema, Context, ServiceBroker } from 'moleculer'
 import {
   sqrt, square, abs, sign, sin, cos, pi,
 } from 'mathjs'
-import Action from '@nodetron/types/internal/task-manager/tasks/actions'
-import { MoveToPacket } from '@nodetron/types/internal/control/packet'
+import Action from '@nodetron/types/task-manager/tasks/actions'
+import { MoveToMessage } from '@nodetron/types/control/moveTo'
 import Point from '@nodetron/math/Point2D'
-import { Control } from '@nodetron/types/internal/control'
+import { OrderMessage } from '@nodetron/types/bots/order'
 import { Color } from '@nodetron/types/utils/utils'
 
 import state from '../state'
@@ -64,8 +64,8 @@ export default class MoveToAction extends Action {
       chipKick: { type: 'boolean', optional: true, default: false },
       power: { type: 'number', optional: true, default: 0 },
     },
-    handler(ctx: Context<MoveToPacket>): void {
-      ctx.broker.logger.debug('MoveToPacket packet received')
+    handler(ctx: Context<MoveToMessage>): void {
+      ctx.broker.logger.debug('MoveTo packet received')
       state.actionManager.register(
         ctx.params.id,
         new MoveToAction(
@@ -165,7 +165,7 @@ export default class MoveToAction extends Action {
           this.lastYLinearVelocity = -dx * sin(robot.orientation) + dy * cos(robot.orientation)
         }
 
-        void broker.call('communication.control', {
+        void broker.call('bots.order', {
           id: this.id,
           yellow: state.data.color === Color.YELLOW,
           spin: this.spin,
@@ -177,7 +177,7 @@ export default class MoveToAction extends Action {
             tangent: this.lastXLinearVelocity,
             normal: this.lastYLinearVelocity,
           },
-        } as Control)
+        } as OrderMessage)
 
         return xyOk && anglOk
       }

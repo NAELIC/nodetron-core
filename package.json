@@ -45,8 +45,8 @@
   },
   "dependencies": {
     "@nodetron/math": "^0.0.1-beta.5",
-    "@nodetron/types": "0.0.1-beta.15",
-    "@nodetron/util": "^0.0.1-beta.4",
+    "@nodetron/types": "0.0.1-beta.17",
+    "@nodetron/util": "^0.0.1-beta.6",
     "dotenv": "^8.2.0",
     "env-var": "^7.0.0",
     "mathjs": "^9.0.0",

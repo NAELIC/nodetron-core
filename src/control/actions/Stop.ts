@@ -2,7 +2,7 @@ import Action from '@nodetron/types/task-manager/tasks/actions'
 import { StopMessage } from '@nodetron/types/control/stop'
 import { OrderMessage } from '@nodetron/types/bots/order'
 import { ActionSchema, Context, ServiceBroker } from 'moleculer'
-import { Color } from '@nodetron/types/utils/utils'
+import { Color } from '@nodetron/types/data/enum'
 
 import state from '../state'
 

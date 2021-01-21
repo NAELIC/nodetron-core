@@ -4,6 +4,7 @@ import {
 } from 'moleculer'
 import { OrderMessage } from '@nodetron/types/bots/order'
 import { PlacementMessage } from '@nodetron/types/bots/placement'
+import { Kick } from '@nodetron/types/data/enum'
 
 import UDPClient from '../network/UDPClient'
 import Config from '../Config'
@@ -42,8 +43,16 @@ export default class BotsGatewayService extends Service {
             id: { type: 'number', min: 0, max: 15 },
             yellow: { type: 'boolean', optional: true, default: true },
             spin: { type: 'boolean', optional: true, default: false },
-            kick: { type: 'boolean', optional: true, default: false },
-            chipKick: { type: 'boolean', optional: true, default: false },
+            kick: {
+              type: 'enum',
+              optional: true,
+              values: [
+                Kick.CHIP,
+                Kick.FLAT,
+                Kick.NO,
+              ],
+              default: Kick.NO,
+            },
             power: { type: 'number', optional: true, default: 0 },
             velocity: {
               type: 'object',

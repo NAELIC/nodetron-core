@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import { VisionDetectionFrame } from '@nodetron/types/league/vision'
 import { IBall, IRobot } from '@nodetron/types/data'
+import { Kick } from '@nodetron/types/data/enum'
 
 import Filters from './filters'
 
@@ -43,7 +44,7 @@ export default class Merge extends Filters {
               orientation: robot.position.orientation,
               radius: 0.9, // TODO : Move this
               infrared: false,
-              kick: { chip: false, flat: false },
+              kick: Kick.NO,
             }
           }
         })
@@ -59,7 +60,7 @@ export default class Merge extends Filters {
               orientation: robot.position.orientation,
               radius: 0.9,
               infrared: false,
-              kick: { chip: false, flat: false },
+              kick: Kick.NO,
             }
           }
         })

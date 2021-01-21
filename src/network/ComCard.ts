@@ -1,6 +1,7 @@
 import { Context, ServiceBroker } from 'moleculer'
 import SerialPort from 'serialport'
 import { OrderMessage } from '@nodetron/types/bots/order'
+import { Kick } from '@nodetron/types/data/enum'
 
 const actionOn: number = (1 << 0)
 const actionKick1: number = (1 << 1)
@@ -36,8 +37,8 @@ export async function start(broker: ServiceBroker): Promise<void> {
 export function sendCommand(ctx: Context, payload: OrderMessage): void {
   let action = actionOn
 
-  if (payload.kick) action |= actionKick1
-  if (payload.chipKick) action |= actionKick2
+  if (payload.kick === Kick.FLAT) action |= actionKick1
+  if (payload.kick === Kick.CHIP) action |= actionKick2
   // if(payload.tareOdometry) action |= actionTareOdom
   if (payload.spin) action |= actionDribble
   // if(payload.charge) action |= charge

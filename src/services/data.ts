@@ -5,7 +5,7 @@ import { GameControllerEvent } from '@nodetron/types/league/game-controller'
 import { HardwareInfo } from '@nodetron/types/league/grsim'
 import { Vision } from '@nodetron/types/league/vision'
 import { DataMessage } from '@nodetron/types/data'
-import { Color } from '@nodetron/types/utils/utils'
+import { Color } from '@nodetron/types/data/enum'
 
 import { cameraState, fieldState } from '../data/state'
 import pipeline from '../data/pipeline'

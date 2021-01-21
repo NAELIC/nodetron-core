@@ -7,7 +7,7 @@ import Action from '@nodetron/types/task-manager/tasks/actions'
 import { MoveToMessage } from '@nodetron/types/control/moveTo'
 import { Point } from '@nodetron/math/Point2D'
 import { OrderMessage } from '@nodetron/types/bots/order'
-import { Color } from '@nodetron/types/utils/utils'
+import { Color, Kick } from '@nodetron/types/data/enum'
 
 import state from '../state'
 
@@ -19,7 +19,7 @@ interface RampSpeed {
 }
 
 export default class MoveToAction extends Action {
-  public name = 'stop';
+  public name = 'moveTo';
 
   public xySpeed: RampSpeed = {
     minSpeed: 0.05,
@@ -46,8 +46,7 @@ export default class MoveToAction extends Action {
     public id: number,
     public target: Point,
     public orientation: number,
-    public kick: boolean,
-    public chipKick: boolean,
+    public kick: Kick,
     public power: number,
     public spin: boolean,
   ) {
@@ -60,8 +59,16 @@ export default class MoveToAction extends Action {
       target: 'object',
       orientation: 'number',
       spin: { type: 'boolean', optional: true, default: false },
-      kick: { type: 'boolean', optional: true, default: false },
-      chipKick: { type: 'boolean', optional: true, default: false },
+      kick: {
+        type: 'enum',
+        optional: true,
+        values: [
+          Kick.CHIP,
+          Kick.FLAT,
+          Kick.NO,
+        ],
+        default: Kick.NO,
+      },
       power: { type: 'number', optional: true, default: 0 },
     },
     handler(ctx: Context<MoveToMessage>): void {
@@ -70,7 +77,7 @@ export default class MoveToAction extends Action {
         ctx.params.id,
         new MoveToAction(
           ctx.params.id, new Point(ctx.params.target.x, ctx.params.target.y), ctx.params.orientation,
-          ctx.params.kick, ctx.params.chipkick, ctx.params.power,
+          ctx.params.kick, ctx.params.power,
           ctx.params.spin,
         ),
       )
@@ -170,7 +177,6 @@ export default class MoveToAction extends Action {
           yellow: state.data.color === Color.YELLOW,
           spin: this.spin,
           kick: this.kick,
-          chipKick: this.chipKick,
           power: this.power,
           velocity: {
             angular: this.lastAngularVelocity,

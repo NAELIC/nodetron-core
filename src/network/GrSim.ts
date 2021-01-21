@@ -5,6 +5,7 @@ import dgram from 'dgram'
 import { Context, ServiceBroker } from 'moleculer'
 import { OrderMessage } from '@nodetron/types/bots/order'
 import { PlacementMessage } from '@nodetron/types/bots/placement'
+import { Kick } from '@nodetron/types/data/enum'
 
 import Config from '../Config'
 
@@ -54,8 +55,8 @@ export function sendCommand(ctx: Context, payload: OrderMessage): void {
         robotCommands: [
           {
             id: payload.id,
-            kickspeedx: payload.kick && payload.power ? payload.power : 0,
-            kickspeedz: payload.chipKick && !payload.kick && payload.power ? payload.power : 0,
+            kickspeedx: payload.kick === Kick.FLAT && payload.power ? payload.power : 0,
+            kickspeedz: payload.kick === Kick.CHIP && payload.power ? payload.power : 0,
             spinner: payload.spin,
             velnormal: payload.velocity.normal,
             velangular: payload.velocity.angular,

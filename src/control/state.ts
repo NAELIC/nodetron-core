@@ -3,7 +3,7 @@ import { TaskManager } from '@nodetron/types/task-manager/task'
 import { ServiceBroker } from 'moleculer'
 import Action from '@nodetron/types/task-manager/tasks/actions'
 import { DataMessage } from '@nodetron/types/data'
-import { Color } from '@nodetron/types/utils/utils'
+import { Color } from '@nodetron/types/data/enum'
 
 class ActionTaskManager implements TaskManager<Action> {
   private actions = new Map<number, Action>()

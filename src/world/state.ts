@@ -1,10 +1,7 @@
 import { VisionDetectionFrame } from '@nodetron/types/league/vision'
-import { AbstractField } from '@nodetron/types/world'
+import { AbstractBall, AbstractField, AbstractRobot } from '@nodetron/types/world'
 
-// interface CameraData {
-//     vision: Array<Vision>,
-//     lastTime: number,
-// }
+import Config from '../Config'
 
 export const fieldState: AbstractField = {
   length: 0,
@@ -24,10 +21,20 @@ export const fieldState: AbstractField = {
   },
 }
 
-export const cameraState: Array<Array<VisionDetectionFrame>> = [
-  [],
-  [],
-  [],
-  [],
-]
+export type Detection = Array<VisionDetectionFrame>;
+export type CamerasDetection = Array<Detection>;
+export type DetectionWorld = {
+  ball: AbstractBall,
+  robots: {
+    allies: Array<AbstractRobot>,
+    opponents: Array<AbstractRobot>,
+  },
+}
 
+const cameras: CamerasDetection = new Array(Config.cameras_number)
+  .fill(0)
+  .map(() => [])
+
+export const state = {
+  cameras,
+}

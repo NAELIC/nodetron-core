@@ -11,6 +11,7 @@ const Config = {
   ]),
   simulation: get('SIMULATION').default('false').asBool(),
   yellow: get('YELLOW').required().asBool(),
+  cameras_number: get('CAMERAS_NUMBER').default(4).asInt(),
 
   network: {
     host_address: get('HOST_ADDRESS').required().asString(),

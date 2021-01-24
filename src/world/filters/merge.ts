@@ -1,25 +1,28 @@
-/* eslint-disable max-len */
-import { VisionDetectionFrame } from '@nodetron/types/league/vision'
-import { AbstractBall, AbstractRobot } from '@nodetron/types/world'
 import { Kick } from '@nodetron/types/enum'
+
+import { CamerasDetection, DetectionWorld } from '../state'
 
 import Filters from './filters'
 
 export default class Merge extends Filters {
-  public initData(): { ball: AbstractBall, robots: { allies: Array<AbstractRobot>, opponents: Array<AbstractRobot> } } {
+  public initData(): DetectionWorld {
     return {
       robots: {
-        allies: [] as Array<AbstractRobot>,
-        opponents: [] as Array<AbstractRobot>,
+        allies: [],
+        opponents: [],
       },
       ball: {
-        position: {},
-      } as AbstractBall,
+        position: {
+          x: 0,
+          y: 0,
+        },
+        radius: 0.0025,
+      },
     }
   }
 
   // TODO : Improve that
-  public filter(visionData: VisionDetectionFrame[][]): { ball: AbstractBall, robots: { allies: Array<AbstractRobot>, opponents: Array<AbstractRobot> } } {
+  public filter(visionData: CamerasDetection) : DetectionWorld {
     const world = this.initData()
     visionData.forEach((camerasDetection) => {
       camerasDetection.forEach((detections) => {

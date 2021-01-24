@@ -1,4 +1,4 @@
-import { VisionDetectionFrame } from '@nodetron/types/league/vision'
+import { CamerasDetection } from '../state'
 
 import Filters from './filters'
 
@@ -8,9 +8,9 @@ export default class Thresold extends Filters {
     public minConfidenceRobot: number,
   ) { super() }
 
-  public filter(world: VisionDetectionFrame[][]): VisionDetectionFrame[][] {
-    world.forEach((cameraValue) => {
-      cameraValue.forEach((detection) => {
+  public filter(cameras: CamerasDetection): CamerasDetection {
+    cameras.forEach((detections) => {
+      detections.forEach((detection) => {
         detection.balls.filter(
           (ball) => ball.confidence > this.minConfidenceBall,
         )
@@ -22,6 +22,6 @@ export default class Thresold extends Filters {
         )
       })
     })
-    return world
+    return cameras
   }
 }

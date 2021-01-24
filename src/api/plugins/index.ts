@@ -1,7 +1,7 @@
-import data from './data'
+import world from './world'
 import graph from './graph'
 
 export default [
-  data,
+  world,
   graph,
 ]

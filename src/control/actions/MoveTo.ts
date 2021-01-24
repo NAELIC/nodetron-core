@@ -7,7 +7,7 @@ import Action from '@nodetron/types/task-manager/tasks/actions'
 import { MoveToMessage } from '@nodetron/types/control/moveTo'
 import { Point } from '@nodetron/math/Point2D'
 import { OrderMessage } from '@nodetron/types/bots/order'
-import { Color, Kick } from '@nodetron/types/data/enum'
+import { Color, Kick } from '@nodetron/types/enum'
 
 import state from '../state'
 
@@ -126,8 +126,8 @@ export default class MoveToAction extends Action {
   }
 
   public compute(broker: ServiceBroker): boolean {
-    if (state.data.robots) {
-      const robot = state.data.robots.allies[this.id]
+    if (state.world.robots) {
+      const robot = state.world.robots.allies[this.id]
       if (robot) {
         let anglOk = false
         let xyOk = false
@@ -174,7 +174,7 @@ export default class MoveToAction extends Action {
 
         void broker.call('bots.order', {
           id: this.id,
-          yellow: state.data.color === Color.YELLOW,
+          yellow: state.world.color === Color.YELLOW,
           spin: this.spin,
           kick: this.kick,
           power: this.power,

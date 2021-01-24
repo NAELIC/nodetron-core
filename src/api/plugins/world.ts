@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable object-shorthand */
-import { DataMessage } from '@nodetron/types/data'
+import { WorldMessage } from '@nodetron/types/world'
 import {
   Context,
 } from 'moleculer'
@@ -9,14 +9,14 @@ import { manager } from '../MessageManager'
 
 import Plugin from './plugin'
 
-const data: Plugin = {
-  dependencies: ['data'],
+const world: Plugin = {
+  dependencies: ['world'],
   events: {
-    'data.state'(ctx: Context<DataMessage>): void {
+    'world.state'(ctx: Context<WorldMessage>): void {
       manager.addMessage(ctx.params, ctx.broker)
     },
   },
   actions: {},
 }
 
-export default data
+export default world

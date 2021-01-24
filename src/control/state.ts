@@ -1,9 +1,9 @@
-import { Data } from '@nodetron/util/data'
+import { World } from '@nodetron/util/world'
 import { TaskManager } from '@nodetron/types/task-manager/task'
 import { ServiceBroker } from 'moleculer'
 import Action from '@nodetron/types/task-manager/tasks/actions'
-import { DataMessage } from '@nodetron/types/data'
-import { Color } from '@nodetron/types/data/enum'
+import { WorldMessage } from '@nodetron/types/world'
+import { Color } from '@nodetron/types/enum'
 
 class ActionTaskManager implements TaskManager<Action> {
   private actions = new Map<number, Action>()
@@ -22,7 +22,7 @@ class ActionTaskManager implements TaskManager<Action> {
   }
 }
 
-const initialData: DataMessage = {
+const initialData: WorldMessage = {
   field: {
     width: 6,
     length: 9,
@@ -52,7 +52,7 @@ const initialData: DataMessage = {
 }
 
 const state = {
-  data: new Data(initialData),
+  world: new World(initialData),
   actionManager: new ActionTaskManager(),
 }
 

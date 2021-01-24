@@ -1,7 +1,7 @@
 import { Context, ServiceBroker } from 'moleculer'
 import SerialPort from 'serialport'
 import { OrderMessage } from '@nodetron/types/bots/order'
-import { Kick } from '@nodetron/types/data/enum'
+import { Kick } from '@nodetron/types/enum'
 
 const actionOn: number = (1 << 0)
 const actionKick1: number = (1 << 1)

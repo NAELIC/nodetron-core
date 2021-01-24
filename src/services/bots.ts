@@ -4,7 +4,7 @@ import {
 } from 'moleculer'
 import { OrderMessage } from '@nodetron/types/bots/order'
 import { PlacementMessage } from '@nodetron/types/bots/placement'
-import { Kick } from '@nodetron/types/data/enum'
+import { Kick } from '@nodetron/types/enum'
 
 import UDPClient from '../network/UDPClient'
 import Config from '../Config'

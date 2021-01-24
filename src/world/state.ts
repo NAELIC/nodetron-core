@@ -1,12 +1,12 @@
 import { VisionDetectionFrame } from '@nodetron/types/league/vision'
-import { IField } from '@nodetron/types/data'
+import { AbstractField } from '@nodetron/types/world'
 
 // interface CameraData {
 //     vision: Array<Vision>,
 //     lastTime: number,
 // }
 
-export const fieldState: IField = {
+export const fieldState: AbstractField = {
   length: 0,
   width: 0,
   goal: {

@@ -8,8 +8,8 @@ export default class Thresold extends Filters {
     public minConfidenceRobot: number,
   ) { super() }
 
-  public filter(data: VisionDetectionFrame[][]): VisionDetectionFrame[][] {
-    data.forEach((cameraValue) => {
+  public filter(world: VisionDetectionFrame[][]): VisionDetectionFrame[][] {
+    world.forEach((cameraValue) => {
       cameraValue.forEach((detection) => {
         detection.balls.filter(
           (ball) => ball.confidence > this.minConfidenceBall,
@@ -22,6 +22,6 @@ export default class Thresold extends Filters {
         )
       })
     })
-    return data
+    return world
   }
 }

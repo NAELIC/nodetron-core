@@ -1,30 +1,30 @@
 /* eslint-disable max-len */
 import { VisionDetectionFrame } from '@nodetron/types/league/vision'
-import { IBall, IRobot } from '@nodetron/types/data'
-import { Kick } from '@nodetron/types/data/enum'
+import { AbstractBall, AbstractRobot } from '@nodetron/types/world'
+import { Kick } from '@nodetron/types/enum'
 
 import Filters from './filters'
 
 export default class Merge extends Filters {
-  public initData(): { ball: IBall, robots: { allies: Array<IRobot>, opponents: Array<IRobot> } } {
+  public initData(): { ball: AbstractBall, robots: { allies: Array<AbstractRobot>, opponents: Array<AbstractRobot> } } {
     return {
       robots: {
-        allies: [] as Array<IRobot>,
-        opponents: [] as Array<IRobot>,
+        allies: [] as Array<AbstractRobot>,
+        opponents: [] as Array<AbstractRobot>,
       },
       ball: {
         position: {},
-      } as IBall,
+      } as AbstractBall,
     }
   }
 
   // TODO : Improve that
-  public filter(visionData: VisionDetectionFrame[][]): { ball: IBall, robots: { allies: Array<IRobot>, opponents: Array<IRobot> } } {
-    const data = this.initData()
+  public filter(visionData: VisionDetectionFrame[][]): { ball: AbstractBall, robots: { allies: Array<AbstractRobot>, opponents: Array<AbstractRobot> } } {
+    const world = this.initData()
     visionData.forEach((camerasDetection) => {
       camerasDetection.forEach((detections) => {
         detections.balls.forEach((ball) => {
-          data.ball = {
+          world.ball = {
             position: {
               x: ball.position.x / 1000.0,
               y: ball.position.y / 1000.0,
@@ -35,7 +35,7 @@ export default class Merge extends Filters {
 
         detections.robots.allies.forEach((robot) => {
           if (robot.id != null && robot.position.orientation != null) {
-            data.robots.allies[robot.id] = {
+            world.robots.allies[robot.id] = {
               id: robot.id,
               position: {
                 x: robot.position.x / 1000.0,
@@ -51,7 +51,7 @@ export default class Merge extends Filters {
 
         detections.robots.opponents.forEach((robot) => {
           if (robot.id != null && robot.position.orientation != null) {
-            data.robots.opponents[robot.id] = {
+            world.robots.opponents[robot.id] = {
               id: robot.id,
               position: {
                 x: robot.position.x / 1000.0,
@@ -66,6 +66,6 @@ export default class Merge extends Filters {
         })
       })
     })
-    return data
+    return world
   }
 }

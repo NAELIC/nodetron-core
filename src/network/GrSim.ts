@@ -5,7 +5,7 @@ import dgram from 'dgram'
 import { Context, ServiceBroker } from 'moleculer'
 import { OrderMessage } from '@nodetron/types/bots/order'
 import { PlacementMessage } from '@nodetron/types/bots/placement'
-import { Kick } from '@nodetron/types/data/enum'
+import { Kick } from '@nodetron/types/enum'
 
 import Config from '../Config'
 

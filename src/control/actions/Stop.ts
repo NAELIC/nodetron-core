@@ -2,7 +2,7 @@ import Action from '@nodetron/types/task-manager/tasks/actions'
 import { StopMessage } from '@nodetron/types/control/stop'
 import { OrderMessage } from '@nodetron/types/bots/order'
 import { ActionSchema, Context, ServiceBroker } from 'moleculer'
-import { Color } from '@nodetron/types/data/enum'
+import { Color } from '@nodetron/types/enum'
 
 import state from '../state'
 
@@ -26,7 +26,7 @@ export default class StopAction extends Action {
   public compute(broker: ServiceBroker): boolean {
     void broker.call('bots.order', {
       id: this.id,
-      yellow: state.data.color === Color.YELLOW,
+      yellow: state.world.color === Color.YELLOW,
       velocity: {
         angular: 0,
         tangent: 0,

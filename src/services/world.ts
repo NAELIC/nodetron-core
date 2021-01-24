@@ -4,13 +4,13 @@ import { Context, Service, ServiceBroker } from 'moleculer'
 import { GameControllerEvent } from '@nodetron/types/league/game-controller'
 import { HardwareInfo } from '@nodetron/types/league/grsim'
 import { Vision } from '@nodetron/types/league/vision'
-import { DataMessage } from '@nodetron/types/data'
-import { Color } from '@nodetron/types/data/enum'
+import { WorldMessage } from '@nodetron/types/world'
+import { Color } from '@nodetron/types/enum'
 
-import { cameraState, fieldState } from '../data/state'
-import pipeline from '../data/pipeline'
+import { cameraState, fieldState } from '../world/state'
+import pipeline from '../world/pipeline'
 import Config from '../Config'
-import processGeometry from '../data/process/geometry'
+import processGeometry from '../world/process/geometry'
 // import constant from '../data/constant'
 
 // Put all data in an dimension array of queue
@@ -26,7 +26,7 @@ export default class DataService extends Service {
   public constructor(public broker: ServiceBroker) {
     super(broker)
     this.parseServiceSchema({
-      name: 'data',
+      name: 'world',
       dependencies: ['network'],
       async started() {
         interval = setInterval(() => {
@@ -37,13 +37,13 @@ export default class DataService extends Service {
             while (value.length) { value.pop() }
           })
 
-          void broker.emit('data.state', {
+          void broker.emit('world.state', {
             field: fieldState,
             robots: data.robots,
             ball: data.ball,
             color: Config.yellow === true ? Color.YELLOW : Color.BLUE,
             // constant, TODO : READD THIS !
-          } as DataMessage)
+          } as WorldMessage)
         }, 60)
       },
       async stopped() {

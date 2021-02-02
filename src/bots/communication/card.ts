@@ -14,7 +14,7 @@ const actionDribble: number = (1 << 3)
 let serial: SerialPort
 let tmpPacket: Buffer = Buffer.alloc(14)
 
-export async function start(broker: ServiceBroker): Promise<void> {
+export async function startCard(broker: ServiceBroker): Promise<void> {
   return new Promise((resolve, reject) => {
     serial = new SerialPort('/dev/ttyACM0', {
       baudRate: 1000000,
@@ -34,7 +34,7 @@ export async function start(broker: ServiceBroker): Promise<void> {
   })
 }
 
-export function sendCommand(ctx: Context, payload: OrderMessage): void {
+export function sendCardCommand(ctx: Context, payload: OrderMessage): void {
   let action = actionOn
 
   if (payload.kick === Kick.FLAT) action |= actionKick1

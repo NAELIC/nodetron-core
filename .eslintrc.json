@@ -83,7 +83,6 @@
       }
     ],
     "no-bitwise": 0,
-    "class-methods-use-this": "off",
-    "no-unused-vars": ["warn", { "varsIgnorePattern": "broker" }]
+    "class-methods-use-this": "off"
   }
 }

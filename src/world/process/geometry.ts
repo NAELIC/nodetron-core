@@ -1,5 +1,5 @@
 import { ServiceBroker } from 'moleculer'
-import { VisionGeometryFieldSize } from '@nodetron/types/league/vision'
+import { VisionGeometryFieldSize } from '@nodetron/types/network/vision'
 
 import { state } from '../state'
 

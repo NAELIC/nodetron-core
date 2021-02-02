@@ -1,8 +1,8 @@
 import dgram from 'dgram'
 
-import { GameControllerEvent } from '@nodetron/types/league/game-controller'
-import { Vision } from '@nodetron/types/league/vision'
-import { HardwareInfo } from '@nodetron/types/league/grsim'
+import { GameControllerEvent } from '@nodetron/types/network/game-controller'
+import { Vision } from '@nodetron/types/network/vision'
+import { HardwareInfo } from '@nodetron/types/bots/hardware'
 import { ServiceBroker } from 'moleculer'
 
 let socket: dgram.Socket

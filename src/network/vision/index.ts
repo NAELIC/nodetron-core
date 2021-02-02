@@ -3,7 +3,7 @@ import {
   VisionDetectionBall, VisionDetectionFrame, VisionDetectionRobot,
   VisionFieldCircularArc, VisionFieldLineSegment,
   VisionGeometryCameraCalibration, VisionGeometry, VisionGeometryFieldSize,
-} from '@nodetron/types/league/vision'
+} from '@nodetron/types/network/vision'
 
 import Config from '../../Config'
 

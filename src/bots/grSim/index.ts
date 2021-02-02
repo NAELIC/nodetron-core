@@ -1,5 +1,6 @@
 /* eslint-disable security/detect-object-injection */
-import { HardwareInfo } from '@nodetron/types/league/grsim'
+import { Kick } from '@nodetron/types/enum'
+import { HardwareInfo } from '@nodetron/types/bots/hardware'
 
 import { Robots_Status as RobotsStatus } from './compiled/compiledProtobufGrSimRobotStatus'
 
@@ -10,13 +11,15 @@ function castProtobufGrSimRobotsStatus(payload: RobotsStatus): Array<HardwareInf
     for (let i = 0; i < payload.robotsStatus.length; i += 1) {
       const item = payload.robotsStatus[i]
 
+      let kick = Kick.NO
+
+      if (item.chipKick) kick = Kick.CHIP
+      else if (item.flatKick) kick = Kick.FLAT
+
       items.push({
         id: item.robotId,
         infrared: item.infrared,
-        kick: {
-          chip: item.chipKick,
-          flat: item.flatKick,
-        },
+        kick,
       })
     }
   }

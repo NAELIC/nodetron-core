@@ -1,5 +1,5 @@
 /* eslint-disable security/detect-object-injection */
-import { GameControllerEvent, GameControllerTeamInfo } from '@nodetron/types/league/game-controller'
+import { GameControllerEvent, GameControllerTeamInfo } from '@nodetron/types/network/game-controller'
 
 import { SSL_Referee as SSLReferee } from './compiled/compiledProtobufGameControllerPacket'
 

@@ -1,5 +1,5 @@
-import { HardwareInfo } from '@nodetron/types/league/grsim'
-import { VisionDetectionFrame } from '@nodetron/types/league/vision'
+import { HardwareInfo } from '@nodetron/types/bots/hardware'
+import { VisionDetectionFrame } from '@nodetron/types/network/vision'
 import { AbstractBall, AbstractField, AbstractRobot } from '@nodetron/types/world'
 
 import Config from '../Config'

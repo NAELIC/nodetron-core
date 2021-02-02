@@ -1,8 +1,8 @@
 /* eslint-disable object-shorthand */
 import { Context, Service, ServiceBroker } from 'moleculer'
-import { GameControllerEvent } from '@nodetron/types/league/game-controller'
-import { HardwareInfo } from '@nodetron/types/league/grsim'
-import { Vision } from '@nodetron/types/league/vision'
+import { GameControllerEvent } from '@nodetron/types/network/game-controller'
+import { HardwareInfo } from '@nodetron/types/bots/hardware'
+import { Vision } from '@nodetron/types/network/vision'
 
 import { state } from '../world/state'
 import pipelineFilter from '../world/pipeline'

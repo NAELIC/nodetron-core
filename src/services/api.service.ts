@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/require-await */
 import {
-  Service, ServiceActionsSchema, ServiceBroker, ServiceDependency, ServiceEvents,
+  Service, ServiceActionsSchema, ServiceBroker,
+  ServiceDependency, ServiceEvents,
 } from 'moleculer'
 
 import endpoints from '../api/endpoints'

@@ -46,8 +46,8 @@ export default class Merge extends Filters {
               },
               orientation: robot.position.orientation,
               radius: 0.9, // TODO : Move this
-              infrared: state.lastHardwareInfo[robot.id].infrared,
-              kick: state.lastHardwareInfo[robot.id].kick,
+              infrared: state.lastHardwareInfo[robot.id]?.infrared ?? false,
+              kick: state.lastHardwareInfo[robot.id]?.kick ?? Kick.NO,
             }
           }
         })

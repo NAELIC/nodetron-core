@@ -1,25 +1,8 @@
+import { HardwareInfo } from '@nodetron/types/league/grsim'
 import { VisionDetectionFrame } from '@nodetron/types/league/vision'
 import { AbstractBall, AbstractField, AbstractRobot } from '@nodetron/types/world'
 
 import Config from '../Config'
-
-export const fieldState: AbstractField = {
-  length: 0,
-  width: 0,
-  goal: {
-    width: 0,
-    depth: 0,
-  },
-  penalty: {
-    width: 0,
-    depth: 0,
-  },
-  boundaryWidth: 0,
-  centerMark: {
-    center: { x: 0, y: 0 },
-    radius: 0,
-  },
-}
 
 export type Detection = Array<VisionDetectionFrame>;
 export type CamerasDetection = Array<Detection>;
@@ -37,4 +20,6 @@ const cameras: CamerasDetection = new Array(Config.cameras_number)
 
 export const state = {
   cameras,
+  lastHardwareInfo: {} as Array<HardwareInfo>,
+  field: { } as AbstractField,
 }

@@ -7,7 +7,7 @@ import { Vision } from '@nodetron/types/league/vision'
 import { WorldMessage } from '@nodetron/types/world'
 import { Color } from '@nodetron/types/enum'
 
-import { state, fieldState } from '../world/state'
+import { state } from '../world/state'
 import pipeline from '../world/pipeline'
 import Config from '../Config'
 import processGeometry from '../world/process/geometry'
@@ -21,7 +21,7 @@ export default class DataService extends Service {
     this.parseServiceSchema({
       name: 'world',
       dependencies: ['network'],
-      async started() {
+      created() {
         interval = setInterval(() => {
           const data = pipeline(broker, state.cameras)
 
@@ -30,7 +30,7 @@ export default class DataService extends Service {
           })
 
           void broker.emit('world.state', {
-            field: fieldState,
+            field: state.field,
             robots: data.robots,
             ball: data.ball,
             color: Config.yellow === true ? Color.YELLOW : Color.BLUE,
@@ -48,8 +48,9 @@ export default class DataService extends Service {
         'network.gameController'(ctx: Context<GameControllerEvent>): void {
           DataService.updateGameController(ctx.params, broker)
         },
-        'network.hardwareInfo'(ctx: Context<Array<HardwareInfo>>): void {
-          DataService.updateHardwareInfo(ctx.params, broker)
+        'bots.hardwareInfo'(ctx: Context<Array<HardwareInfo>>): void {
+          ctx.broker.logger.info(ctx.params)
+          state.lastHardwareInfo = ctx.params
         },
       },
     })
@@ -66,10 +67,6 @@ export default class DataService extends Service {
   }
 
   public static updateGameController(newState: GameControllerEvent, broker: ServiceBroker): void {
-    broker.logger.info(newState)
-  }
-
-  public static updateHardwareInfo(newState: Array<HardwareInfo>, broker: ServiceBroker): void {
-    broker.logger.info(newState)
+    broker.logger.info('Todo')
   }
 }

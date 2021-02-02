@@ -10,7 +10,6 @@ export default class NetworkService extends Service {
     super(broker)
     this.parseServiceSchema({
       name: 'network',
-      dependencies: ['bots'],
       async started() {
         await UDPClient(
           broker,

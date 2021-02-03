@@ -1,17 +1,12 @@
-/* eslint-disable @typescript-eslint/require-await */
 /* eslint-disable object-shorthand */
 import { Context, Service, ServiceBroker } from 'moleculer'
-import { GameControllerEvent } from '@nodetron/types/league/game-controller'
-import { HardwareInfo } from '@nodetron/types/league/grsim'
-import { Vision } from '@nodetron/types/league/vision'
-import { WorldMessage } from '@nodetron/types/world'
-import { Color } from '@nodetron/types/enum'
+import { GameControllerEvent } from '@nodetron/types/network/game-controller'
+import { HardwareInfo } from '@nodetron/types/bots/hardware'
+import { Vision } from '@nodetron/types/network/vision'
 
-import { state, fieldState } from '../world/state'
-import pipeline from '../world/pipeline'
-import Config from '../Config'
+import { state } from '../world/state'
+import pipelineFilter from '../world/pipeline'
 import processGeometry from '../world/process/geometry'
-// import constant from '../data/constant'
 
 let interval: NodeJS.Timeout
 
@@ -21,21 +16,13 @@ export default class DataService extends Service {
     this.parseServiceSchema({
       name: 'world',
       dependencies: ['network'],
-      async started() {
+      created() {
         interval = setInterval(() => {
-          const data = pipeline(broker, state.cameras)
+          // Copy and clean state
+          const copyCameras = state.cameras.map((camera) => [...camera])
+          state.cameras = new Array(4).fill(0).map(() => [])
 
-          state.cameras.forEach((value) => {
-            while (value.length) { value.pop() }
-          })
-
-          void broker.emit('world.state', {
-            field: fieldState,
-            robots: data.robots,
-            ball: data.ball,
-            color: Config.yellow === true ? Color.YELLOW : Color.BLUE,
-            // constant, TODO : READ THIS !
-          } as WorldMessage)
+          void broker.emit('world.state', pipelineFilter(broker, copyCameras))
         }, 60)
       },
       async stopped() {
@@ -48,8 +35,9 @@ export default class DataService extends Service {
         'network.gameController'(ctx: Context<GameControllerEvent>): void {
           DataService.updateGameController(ctx.params, broker)
         },
-        'network.hardwareInfo'(ctx: Context<Array<HardwareInfo>>): void {
-          DataService.updateHardwareInfo(ctx.params, broker)
+        'bots.hardwareInfo'(ctx: Context<Array<HardwareInfo>>): void {
+          ctx.broker.logger.info(ctx.params)
+          state.lastHardwareInfo = ctx.params
         },
       },
     })
@@ -66,10 +54,6 @@ export default class DataService extends Service {
   }
 
   public static updateGameController(newState: GameControllerEvent, broker: ServiceBroker): void {
-    broker.logger.info(newState)
-  }
-
-  public static updateHardwareInfo(newState: Array<HardwareInfo>, broker: ServiceBroker): void {
-    broker.logger.info(newState)
+    broker.logger.info('Todo')
   }
 }

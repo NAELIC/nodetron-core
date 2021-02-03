@@ -22,7 +22,7 @@ export default class BotsGatewayService extends Service {
           await UDPClient(
             broker,
             Config.network.vision.address,
-            Config.network.grSim.status.yellow,
+            Config.yellow ? Config.network.grSim.status.yellow : Config.network.grSim.status.blue,
             Config.network.host_address,
             'bots.hardwareInfo',
             processProtobufGrSimRobotsStatusMessage,

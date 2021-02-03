@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/require-await */
 import {
-  Service, ServiceActionsSchema, ServiceBroker, ServiceDependency, ServiceEvents,
+  Service, ServiceActionsSchema, ServiceBroker,
+  ServiceDependency, ServiceEvents,
 } from 'moleculer'
 
 import endpoints from '../api/endpoints'
@@ -39,6 +39,7 @@ export default class APIGateway extends Service {
     })
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public registerDependencies(broker: ServiceBroker): void {
     plugins.forEach((plugin) => this.plugins.push(plugin))
     endpoints.forEach((endpoint) => manager.register(endpoint))

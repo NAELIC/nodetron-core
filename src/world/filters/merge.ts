@@ -1,6 +1,6 @@
 import { Kick } from '@nodetron/types/enum'
 
-import { CamerasDetection, DetectionWorld } from '../state'
+import { state, CamerasDetection, DetectionWorld } from '../state'
 
 import Filters from './filters'
 
@@ -22,7 +22,7 @@ export default class Merge extends Filters {
   }
 
   // TODO : Improve that
-  public filter(visionData: CamerasDetection) : DetectionWorld {
+  public filter(visionData: CamerasDetection): DetectionWorld {
     const world = this.initData()
     visionData.forEach((camerasDetection) => {
       camerasDetection.forEach((detections) => {
@@ -46,8 +46,8 @@ export default class Merge extends Filters {
               },
               orientation: robot.position.orientation,
               radius: 0.9, // TODO : Move this
-              infrared: false,
-              kick: Kick.NO,
+              infrared: state.lastHardwareInfo[robot.id]?.infrared ?? false,
+              kick: state.lastHardwareInfo[robot.id]?.kick ?? Kick.NO,
             }
           }
         })

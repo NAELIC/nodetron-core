@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 import { Context, Service, ServiceBroker } from 'moleculer'
 import { GameControllerEvent } from '@nodetron/types/network/game-controller'
 import { HardwareInfo } from '@nodetron/types/bots/hardware'

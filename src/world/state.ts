@@ -21,5 +21,21 @@ const cameras: CamerasDetection = new Array(Config.cameras_number)
 export const state = {
   cameras,
   lastHardwareInfo: {} as Array<HardwareInfo>,
-  field: { } as AbstractField,
+  field: {
+    length: 0,
+    width: 0,
+    goal: {
+      width: 0,
+      depth: 0,
+    },
+    penalty: {
+      width: 0,
+      depth: 0,
+    },
+    boundaryWidth: 0,
+    centerMark: {
+      center: { x: 0, y: 0 },
+      radius: 0,
+    },
+  } as AbstractField,
 }

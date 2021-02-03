@@ -10,7 +10,7 @@ function castProtobufGrSimRobotsStatus(payload: RobotsStatus): Array<HardwareInf
   if (payload.robotsStatus) {
     for (let i = 0; i < payload.robotsStatus.length; i += 1) {
       const item = payload.robotsStatus[i]
-      
+
       let kick = Kick.NO
 
       if (item.chipKick) kick = Kick.CHIP

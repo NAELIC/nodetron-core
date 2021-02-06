@@ -36,7 +36,6 @@ export default class DataService extends Service {
           DataService.updateGameController(ctx.params, broker)
         },
         'bots.hardwareInfo'(ctx: Context<Array<HardwareInfo>>): void {
-          ctx.broker.logger.info(ctx.params)
           state.lastHardwareInfo = ctx.params
         },
       },

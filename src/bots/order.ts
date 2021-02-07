@@ -9,7 +9,7 @@ import { sendSimCommand } from './communication/simulation'
 
 const params : ActionParams = {
   id: { type: 'number', min: 0, max: 15 },
-  yellow: { type: 'boolean', optional: true, default: true },
+  yellow: { type: 'boolean', optional: true, default: Config.yellow },
   spin: { type: 'boolean', optional: true, default: false },
   kick: {
     type: 'enum',

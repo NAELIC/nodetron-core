@@ -1,4 +1,5 @@
 import { HardwareInfo } from '@nodetron/types/bots/hardware'
+import { GameControllerEvent } from '@nodetron/types/network/game-controller'
 import { VisionDetectionFrame } from '@nodetron/types/network/vision'
 import { AbstractBall, AbstractField, AbstractRobot } from '@nodetron/types/world'
 
@@ -21,6 +22,7 @@ const cameras: CamerasDetection = new Array(Config.cameras_number)
 export const state = {
   cameras,
   lastHardwareInfo: {} as Array<HardwareInfo>,
+  gameController: {} as GameControllerEvent,
   field: {
     length: 0,
     width: 0,

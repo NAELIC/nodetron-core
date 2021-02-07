@@ -30,29 +30,22 @@ export default class DataService extends Service {
       },
       events: {
         'network.vision'(ctx: Context<Vision>): void {
-          DataService.addVisionData(ctx.params, broker)
+          if (ctx.params.detection) {
+            state.cameras[ctx.params.detection.cameraId]
+              .push(ctx.params.detection)
+          }
+
+          if (ctx.params.geometry && ctx.params.geometry.field) { // TODO : Don't update everytime
+            processGeometry(broker, ctx.params.geometry.field)
+          }
         },
         'network.gameController'(ctx: Context<GameControllerEvent>): void {
-          DataService.updateGameController(ctx.params, broker)
+          state.gameController = ctx.params
         },
         'bots.hardwareInfo'(ctx: Context<Array<HardwareInfo>>): void {
           state.lastHardwareInfo = ctx.params
         },
       },
     })
-  }
-
-  public static addVisionData(data: Vision, broker: ServiceBroker): void {
-    if (data.detection) {
-      state.cameras[data.detection.cameraId].push(data.detection)
-    }
-
-    if (data.geometry && data.geometry.field) { // TODO : Don't update everytime
-      processGeometry(broker, data.geometry.field)
-    }
-  }
-
-  public static updateGameController(newState: GameControllerEvent, broker: ServiceBroker): void {
-    broker.logger.info('Todo')
   }
 }

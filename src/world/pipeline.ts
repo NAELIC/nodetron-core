@@ -21,6 +21,7 @@ export default function pipeline(broker: ServiceBroker,
     robots: data.robots,
     ball: data.ball,
     color: Config.yellow === true ? Color.YELLOW : Color.BLUE,
+    gameController: state.gameController,
     // constant, TODO : READ THIS !
   } as WorldMessage
 }

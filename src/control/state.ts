@@ -4,6 +4,7 @@ import { ServiceBroker } from 'moleculer'
 import Action from '@nodetron/types/task-manager/tasks/actions'
 import { WorldMessage } from '@nodetron/types/world'
 import { Color } from '@nodetron/types/enum'
+import { GameControllerEvent } from '@nodetron/types/network/game-controller'
 
 class ActionTaskManager implements TaskManager<Action> {
   private actions = new Map<number, Action>()
@@ -49,6 +50,7 @@ const initialData: WorldMessage = {
     radius: 0.05,
   },
   color: Color.YELLOW,
+  gameController: { } as GameControllerEvent
 }
 
 const state = {

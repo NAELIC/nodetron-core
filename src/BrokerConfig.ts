@@ -6,7 +6,7 @@ import Config from './Config'
 const BrokerConfig: BrokerOptions = {
   transporter: 'TCP',
   serializer: 'JSON',
-  // namespace: 'yellow', // TODO : See if works
+  namespace: Config.yellow ? 'yellow' : 'blue',
   logger: {
     type: 'Console',
     options: {

@@ -50,7 +50,7 @@ const initialData: WorldMessage = {
     radius: 0.05,
   },
   color: Color.YELLOW,
-  gameController: { } as GameControllerEvent
+  gameController: { } as GameControllerEvent,
 }
 
 const state = {

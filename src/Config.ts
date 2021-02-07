@@ -10,11 +10,11 @@ const Config = {
     'trace',
   ]),
   simulation: get('SIMULATION').default('false').asBool(),
-  yellow: get('YELLOW').required().asBool(),
+  yellow: get('YELLOW').default('true').asBool(),
   cameras_number: get('CAMERAS_NUMBER').default(4).asInt(),
 
   network: {
-    host_address: get('HOST_ADDRESS').required().asString(),
+    host_address: get('HOST_ADDRESS').default('0.0.0.0').asString(),
     vision: {
       address: get('VISION_ADDRESS').default('224.5.23.2').asString(),
       port: get('VISION_PORT').default('10006').asIntPositive(),

@@ -9,7 +9,7 @@ const robotParams = {
   type: 'object',
   props: {
     id: { type: 'number', min: 0, max: 15 },
-    yellow: { type: 'boolean', optional: true, default: true },
+    yellow: { type: 'boolean', optional: true, default: Config.yellow },
     x: { type: 'number' },
     y: { type: 'number' },
     orientation: { type: 'number', optional: true, default: 0 },

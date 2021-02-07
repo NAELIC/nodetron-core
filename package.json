@@ -39,7 +39,7 @@
     "standard-version": "^9.1.0"
   },
   "dependencies": {
-    "@nodetron/math": "^0.0.1-beta.6",
+    "@nodetron/math": "^0.0.1-beta.7",
     "@nodetron/types": "0.0.1-beta.20",
     "@nodetron/util": "^0.0.1-beta.7",
     "dotenv": "^8.2.0",

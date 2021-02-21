@@ -44,6 +44,17 @@ export function startSimulationSocket(broker: ServiceBroker): Promise<void> {
 }
 
 export function sendSimCommand(ctx: Context<OrderMessage>): void {
+  const MAX_BALL_SPEED = 6.5 // TODO : Move this maybe another parts ?
+  let kickSpeedX = 0.0
+  let kickSpeedZ = 0.0
+
+  if (ctx.params.kick === Kick.FLAT) {
+    kickSpeedX = MAX_BALL_SPEED * ctx.params.power
+  } else if (ctx.params.kick === Kick.CHIP) {
+    kickSpeedX = 4 * ctx.params.power
+    kickSpeedZ = 4 * ctx.params.power
+  }
+
   const msg = GrSimPacket.create({
     commands: {
       timestamp: Date.now(),
@@ -51,8 +62,8 @@ export function sendSimCommand(ctx: Context<OrderMessage>): void {
       robotCommands: [
         {
           id: ctx.params.id,
-          kickspeedx: ctx.params.kick === Kick.FLAT && ctx.params.power ? ctx.params.power : 0,
-          kickspeedz: ctx.params.kick === Kick.CHIP && ctx.params.power ? ctx.params.power : 0,
+          kickspeedx: kickSpeedX,
+          kickspeedz: kickSpeedZ,
           spinner: ctx.params.spin,
           velnormal: ctx.params.velocity.normal,
           velangular: ctx.params.velocity.angular,
